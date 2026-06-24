@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #ff4081;
+      animation: pop 1s ease-in-out infinite alternate;
+    }
+
+    p {
+      font-size: 1.5em;
+      margin: 20px auto;
+      width: 60%;
+    }
+
+    .heart {
+      color: red;
+      font-size: 2em;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1em;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background-color: #e91e63;
+    }
+
+    .confetti {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      animation: fall 4s infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎂 Happy Birthday, Love! 🎉</h1>
+    <p>
+      On this special day, I just want to say...<br>
+      You mean the world to me. Thank you for being in my life.<br>
+      May your day be filled with love, laughter, and sweet memories.<br><br>
+      <span class="heart">❤️</span>
+    </p>
+
+    <button class="button" onclick="playMusic()">Play Birthday Song</button>
+  </div>
+
+  <!-- Optional Confetti (animated) -->
+  <div class="confetti" id="confetti"></div>
+
+  <!-- Optional Music -->
+  <audio id="birthdayAudio">
+    <source src="happy_birthday.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function playMusic() {
+      document.getElementById('birthdayAudio').play();
+    }
+
+    // Confetti generator
+    const confetti = document.getElementById('confetti');
+    for (let i = 0; i < 100; i++) {
+      let piece = document.createElement('div');
+      piece.classList.add('confetti-piece');
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      piece.style.animationDuration = 2 + Math.random() * 3 + 's';
+      piece.style.width = piece.style.height = 5 + Math.random() * 10 + 'px';
+      confetti.appendChild(piece);
+    }
+  </script>
+
+</body>
+</html>
